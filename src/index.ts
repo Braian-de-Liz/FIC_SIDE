@@ -1,9 +1,14 @@
 import { Elysia } from "elysia";
-import { user_plugin } from "./routes/user/user_plugins";
+import { swagger } from "@elysiajs/swagger"
+
+import { dbModel } from "./lib/drizzle_plugin";
+import { Load_user } from "./routes/user/load_user";
 
 const Server = new Elysia()
-    .use(user_plugin)
-    .get("/bahh", () =>{console.log("")})
+    .use(dbModel)
+    .use(Load_user)
+    .get("/bahh", () => { console.log("Des faz o L") })
+    .use(swagger())
     .listen(3333);
 
 
