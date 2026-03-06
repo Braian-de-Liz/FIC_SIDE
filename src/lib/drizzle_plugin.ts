@@ -8,11 +8,10 @@ const queryClient = postgres(Bun.env.DATABASE_URL!);
 
 export const db = drizzle(queryClient, { schema });
 
-const dbModel = (app: Elysia) =>
-    app
-        .decorate('db', db)
-        .onStop(async () => {
-            await queryClient.end();
-        });
+const dbModel = new Elysia({ name: 'db-model' })
+    .decorate('db', db)
+    .onStop(async () => {
+        await queryClient.end();
+    });
 
 export { dbModel };
