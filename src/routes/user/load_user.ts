@@ -1,7 +1,9 @@
 import { Elysia, t } from "elysia";
+import { dbModel } from '../../lib/drizzle_plugin';
 
 const Load_user = new Elysia()
-    .get("/user/:id", async ({ params, set }) => {
+    .use(dbModel)
+    .get("/user/:id", async ({ params, set, db }) => {
 
         const { id } = params;
 

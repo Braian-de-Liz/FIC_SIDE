@@ -11,7 +11,7 @@ const Server = new Elysia()
     .use(register)
     .get("/bahh", () => { console.log("Des faz o L") })
     .use(swagger())
-    .listen(3333);
+    .listen(3334);
 
 
 console.log("FIC_SIDE rodando");
