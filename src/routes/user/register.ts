@@ -5,7 +5,7 @@ import { users } from '../../lib/schema';
 
 const register = new Elysia()
     .use(dbModel)
-    .post("/register", async ({ body, set, db }) => {
+    .post("/user/register", async ({ body, set, db }) => {
         const { nome, email, password } = body;
 
         try {

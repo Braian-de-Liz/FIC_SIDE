@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "bun run --watch src/index.ts",
-    "build": "bun build src/index.ts --outdir dist --minify --sourcemap --targe=bun",
+    "build": "bun build src/index.ts --outdir dist --minify --sourcemap --target=bun",
+    "start": "bun run dist/index.js",
     "check": "tsc --noEmit"
   },
   "devDependencies": {
