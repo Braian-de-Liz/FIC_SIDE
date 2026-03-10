@@ -1,4 +1,4 @@
-// src\lib\drizzle_plugin.ts
+// src/lib/drizzle_plugin.ts
 import { Elysia } from "elysia";
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
@@ -6,12 +6,13 @@ import * as schema from "./schema";
 
 const queryClient = postgres(Bun.env.DATABASE_URL!);
 
-export const db = drizzle(queryClient, { schema });
+const db = drizzle(queryClient, { schema });
 
-const dbModel = new Elysia({ name: 'db-model' })
-    .decorate('db', db)
-    .onStop(async () => {
+const dbModel = (app: Elysia) =>
+    app.decorate('db', db).onStop(async () => {
+        console.log("Encerrando conexão com o banco...");
         await queryClient.end();
     });
 
-export { dbModel };
+
+export { db, dbModel };

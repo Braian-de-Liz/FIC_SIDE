@@ -9,7 +9,7 @@ const Load_user = new Elysia()
 
         try {
 
-            const search_user = await db.query.users.findFirst({ where: (users, { eq }) => eq(users.id, params.id) });
+            const search_user = await db.query.users.findFirst({ where: (users, { eq }) => eq(users.id, id) });
 
             if (!search_user) {
                 set.status = 404

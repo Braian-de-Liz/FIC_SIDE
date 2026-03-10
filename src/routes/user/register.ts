@@ -1,10 +1,8 @@
 import { Elysia, t } from 'elysia';
 import argon2 from 'argon2';
-import { dbModel } from '../../lib/drizzle_plugin';
 import { users } from '../../lib/schema';
 
 const register = new Elysia()
-    .use(dbModel)
     .post("/user/register", async ({ body, set, db }) => {
         const { nome, email, password } = body;
 
