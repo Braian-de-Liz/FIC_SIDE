@@ -1,16 +1,12 @@
-import { Elysia } from "elysia";
-import { swagger } from "@elysiajs/swagger"
+import { Hono } from 'hono'
+import { z } from 'zod'
+import { zValidator } from '@hono/zod-validator'
+import { swaggerUI } from '@hono/swagger-ui'
 
-import { dbModel } from "./lib/drizzle_plugin";
-import { health_route } from "./routes/health/health"
-import { user_plugin } from "./routes/user/user_plugins";
-
-const Server = new Elysia()
-    .use(dbModel)
-    .use(user_plugin)
-    .use(health_route)
-    .use(swagger())
-    .listen(3334);
+const app = new Hono()
 
 
-console.log("FIC_SIDE rodando na porta 3334");
+export default {
+  port: 3334,
+  fetch: app.fetch
+}
